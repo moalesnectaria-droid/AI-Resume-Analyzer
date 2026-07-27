@@ -1,10 +1,18 @@
+import Navbar from "../components/layout/Navbar";
 import Hero from "../components/layout/Hero";
+import ResumeUploader from "../components/resume/ResumeUploader";
+import JobDescription from "../components/resume/JobDescription";
+import AkiAssistent from "../components/resume/AkiAssistent";
 
 function Home() {
     return (
-        <main>
+        <>
+            <Navbar />
             <Hero />
-        </main>
+            <ResumeUploader />
+            <JobDescription />
+            <AkiAssistent />
+        </>
     );
 }
 

@@ -1,0 +1,123 @@
+.hero {
+    max-width: 1400px;
+    margin: 0 auto;
+    min-height: calc(100vh - 90px);
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+
+    align-items: center;
+
+    padding: 40px 60px;
+}
+
+.hero-left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.hero-right {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.badge {
+    width: fit-content;
+
+    padding: 10px 20px;
+
+    border-radius: 999px;
+
+    background: white;
+
+    color: #4D96FF;
+
+    font-weight: 600;
+
+    box-shadow: 0 8px 25px rgba(0,0,0,.08);
+
+    margin-bottom: 24px;
+}
+
+.hero h1 {
+    font-size: 56px;
+    line-height: 1.15;
+    margin-bottom: 24px;
+}
+
+.hero p {
+    font-size: 20px;
+    line-height: 1.7;
+    color: #666;
+    margin-bottom: 36px;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 20px;
+}
+
+.primary,
+.secondary {
+    padding: 18px 34px;
+    border-radius: 999px;
+    border: none;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.primary {
+    color: white;
+
+    background: linear-gradient(
+        90deg,
+        #FF6B6B,
+        #FFB84D,
+        #FFE66D,
+        #6BCB77,
+        #4D96FF
+    );
+}
+
+.secondary {
+    background: white;
+
+    box-shadow: 0 8px 25px rgba(0,0,0,.08);
+}
+
+.akita-placeholder {
+    width: 420px;
+    height: 420px;
+
+    background: white;
+
+    border-radius: 40px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    box-shadow: 0 25px 60px rgba(0,0,0,.08);
+
+    font-size: 56px;
+    font-weight: 700;
+    color: #4D96FF;
+}
+
+@media (max-width: 950px) {
+    .hero {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .hero-left {
+        align-items: center;
+    }
+
+    .hero h1 {
+        font-size: 48px;
+    }
+}

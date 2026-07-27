@@ -1,0 +1,87 @@
+.upload-section{
+
+max-width:900px;
+
+margin:120px auto;
+
+text-align:center;
+
+}
+
+.upload-section h2{
+
+font-size:42px;
+
+margin-bottom:20px;
+
+}
+
+.upload-section p{
+
+color:#666;
+
+font-size:18px;
+
+margin-bottom:40px;
+
+}
+
+.upload-box{
+
+background:white;
+
+padding:70px;
+
+border-radius:30px;
+
+box-shadow:0 20px 50px rgba(0,0,0,.08);
+
+border:2px dashed #d9d9d9;
+
+transition:.3s;
+
+}
+
+.upload-box:hover{
+
+border-color:#4D96FF;
+
+transform:translateY(-4px);
+
+}
+
+.upload-icon{
+
+font-size:70px;
+
+margin-bottom:20px;
+
+}
+
+.upload-box h3{
+
+font-size:28px;
+
+margin-bottom:15px;
+
+}
+
+.upload-box button{
+
+margin-top:30px;
+
+padding:16px 30px;
+
+border:none;
+
+border-radius:50px;
+
+background:#111827;
+
+color:white;
+
+font-size:18px;
+
+cursor:pointer;
+
+}
