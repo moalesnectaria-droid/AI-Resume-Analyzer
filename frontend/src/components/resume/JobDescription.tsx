@@ -1,6 +1,14 @@
 import "./JobDescription.css";
 
-function JobDescription() {
+interface JobDescriptionProps {
+    value: string;
+    onChange: (value: string) => void;
+}
+
+function JobDescription({
+    value,
+    onChange,
+}: JobDescriptionProps) {
     return (
         <section className="job-section">
 
@@ -11,6 +19,8 @@ function JobDescription() {
             </p>
 
             <textarea
+                value={value}
+                onChange={(e) => onChange(e.target.value)}
                 placeholder="Paste the job description here..."
             />
 

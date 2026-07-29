@@ -1,15 +1,25 @@
 import "./ResumeUploader.css";
-import { useCallback, useState } from "react";
+import { useCallback } from "react";
 import { useDropzone } from "react-dropzone";
 
-function ResumeUploader() {
-    const [file, setFile] = useState<File | null>(null);
+interface ResumeUploaderProps {
+    file: File | null;
+    onFileSelect: (file: File) => void;
+}
 
-    const onDrop = useCallback((acceptedFiles: File[]) => {
-        if (acceptedFiles.length > 0) {
-            setFile(acceptedFiles[0]);
-        }
-    }, []);
+function ResumeUploader({
+    file,
+    onFileSelect,
+}: ResumeUploaderProps) {
+
+    const onDrop = useCallback(
+        (acceptedFiles: File[]) => {
+            if (acceptedFiles.length > 0) {
+                onFileSelect(acceptedFiles[0]);
+            }
+        },
+        [onFileSelect]
+    );
 
     const { getRootProps, getInputProps, isDragActive } = useDropzone({
         onDrop,

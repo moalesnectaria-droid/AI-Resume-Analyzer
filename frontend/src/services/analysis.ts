@@ -1,45 +1,30 @@
 export interface AnalysisResult {
-    score: number;
-    matchedSkills: string[];
-    missingSkills: string[];
-    recommendations: string[];
+  filename: string;
+  pages: number;
+  score: number;
+  matched: string[];
+  missing: string[];
 }
 
-export async function analyzeResume(): Promise<AnalysisResult> {
+export async function analyzeResume(
+  file: File,
+  jobDescription: string
+): Promise<AnalysisResult> {
+  const formData = new FormData();
 
-    return new Promise((resolve) => {
+  formData.append("file", file);
+  formData.append("job_description", jobDescription);
 
-        setTimeout(() => {
+  const response = await fetch("http://127.0.0.1:8000/upload", {
+    method: "POST",
+    body: formData,
+  });
 
-            resolve({
+  if (!response.ok) {
+    throw new Error("Failed to analyze resume.");
+  }
 
-                score: 92,
+  const data: AnalysisResult = await response.json();
 
-                matchedSkills: [
-                    "React",
-                    "TypeScript",
-                    "Git",
-                    "REST API"
-                ],
-
-                missingSkills: [
-                    "Docker",
-                    "AWS",
-                    "CI/CD"
-                ],
-
-                recommendations: [
-                    "Add Docker experience to your Projects section.",
-                    "Mention REST API development more clearly.",
-                    "Include measurable achievements.",
-                    "Add CI/CD tools such as GitHub Actions.",
-                    "Mention cloud technologies like AWS."
-                ]
-
-            });
-
-        }, 1200);
-
-    });
-
+  return data;
 }
