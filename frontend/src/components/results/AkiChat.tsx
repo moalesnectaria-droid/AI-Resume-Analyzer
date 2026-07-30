@@ -1,50 +1,83 @@
-import "./AkiChat.css";
+import "./ATSScore.css";
+
+import {
+    CircularProgressbar,
+    buildStyles,
+} from "react-circular-progressbar";
+
+import "react-circular-progressbar/dist/styles.css";
+
 import type { AnalysisResult } from "../../services/analysis";
-import aki from "../../assets/aki.png";
 
-type Props = {
-  analysis: AnalysisResult;
-};
-
-function AkiChat({ analysis }: Props) {
-  return (
-    <section className="aki-chat">
-      <div className="aki-header">
-        <img src={aki} alt="Aki" className="aki-avatar" />
-
-        <div>
-          <h2>Aki Assistant</h2>
-          <p>Your AI Career Coach</p>
-        </div>
-      </div>
-
-      <div className="chat-message">
-        <p>
-          Hello! 
-          <br />
-          <br />
-          I've analysed your resume.
-          <br />
-          <br />
-          Your ATS score is <strong>{analysis.score}%</strong>.
-          <br />
-          <br />
-          Here are my biggest suggestions:
-        </p>
-
-        <ul>
-          {analysis.recommendations.map((item) => (
-            <li key={item}>{item}</li>
-          ))}
-        </ul>
-
-        <p>
-          You're already doing a great job. With these improvements your CV
-          could become even stronger. 
-        </p>
-      </div>
-    </section>
-  );
+interface ATSScoreProps {
+    analysis: AnalysisResult;
 }
 
-export default AkiChat;
+function ATSScore({ analysis }: ATSScoreProps) {
+    return (
+        <section className="ats">
+
+            <h2>ATS Compatibility Score</h2>
+
+            <div className="circle">
+                <CircularProgressbar
+                    value={analysis.score}
+                    text={`${analysis.score}%`}
+                    styles={buildStyles({
+                        pathColor: "#4f8dfd",
+                        trailColor: "#edf2ff",
+                        textColor: "#222",
+                        textSize: "18px",
+                    })}
+                />
+            </div>
+
+            <p>
+                Resume: <strong>{analysis.filename}</strong>
+            </p>
+
+            <p>
+                Pages: <strong>{analysis.pages}</strong>
+            </p>
+
+            <div className="skills-container">
+
+                <div className="skills-box">
+
+                    <h3>✅ Matched Skills</h3>
+
+                    <ul>
+                        {analysis.matched.length === 0 ? (
+                            <li>No matched skills found.</li>
+                        ) : (
+                            analysis.matched.map((skill) => (
+                                <li key={skill}>{skill}</li>
+                            ))
+                        )}
+                    </ul>
+
+                </div>
+
+                <div className="skills-box">
+
+                    <h3>❌ Missing Skills</h3>
+
+                    <ul>
+                        {analysis.missing.length === 0 ? (
+                            <li>No missing skills.</li>
+                        ) : (
+                            analysis.missing.map((skill) => (
+                                <li key={skill}>{skill}</li>
+                            ))
+                        )}
+                    </ul>
+
+                </div>
+
+            </div>
+
+        </section>
+    );
+}
+
+export default ATSScore;
